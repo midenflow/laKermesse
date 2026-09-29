@@ -1,0 +1,81 @@
+{
+  "project": "La Kermesse Rennes",
+  "notes": "Use these assets intentionally. See LA_KERMESSE_IMAGE_USAGE_PROMPT.md for placement rules.",
+  "assets": [
+    {
+      "file": "images/01_hero_sunset_people.png",
+      "role": "Primary homepage hero (desktop)",
+      "note": "Best cinematic hero image. Strong sunset sky, lively atmosphere, palm trees, yellow chairs, festive lights."
+    },
+    {
+      "file": "images/02_evening_garden_empty_vertical.png",
+      "role": "Evening garden feature / mobile visual",
+      "note": "Great for 'Le Jardin' section or a tall editorial image block. Clean composition and strong blue-hour mood."
+    },
+    {
+      "file": "images/03_day_garden_framed_arch.png",
+      "role": "Daytime garden feature",
+      "note": "Natural leaf frame. Excellent for the hidden garden story and daytime atmosphere."
+    },
+    {
+      "file": "images/04_dj_booth_event.png",
+      "role": "Events / DJ / programming section",
+      "note": "Best event-driven image. Use for live moments, DJ sets, ambiance and programming."
+    },
+    {
+      "file": "images/05_golden_hour_people.png",
+      "role": "Atmosphere section",
+      "note": "Warm human scene. Strong for community vibe, social life and garden atmosphere."
+    },
+    {
+      "file": "images/06_indoor_room.png",
+      "role": "Interior section / supporting gallery",
+      "note": "Best indoor shot. Useful to show the venue is not only outdoor."
+    },
+    {
+      "file": "images/07_day_garden_foreground_plant.png",
+      "role": "Editorial supporting image",
+      "note": "Strong depth and foreground layering. Good for gallery or supporting image block."
+    },
+    {
+      "file": "images/08_arcade_machine.png",
+      "role": "Games / lifestyle detail",
+      "note": "Shows fun personality of the venue. Use as a detail shot, not as a large hero."
+    },
+    {
+      "file": "images/09_day_garden_wide.png",
+      "role": "Garden section / gallery",
+      "note": "Bright wide terrace shot. Great supporting image for the hidden garden."
+    },
+    {
+      "file": "images/10_people_garden_group.png",
+      "role": "Atmosphere / social gallery",
+      "note": "Lively crowd shot. Good for a gallery tile or atmosphere block."
+    },
+    {
+      "file": "images/11_people_garden_group_blurred.png",
+      "role": "Background-safe atmosphere image",
+      "note": "Use when a people-focused image is desired but less facial detail is preferable."
+    },
+    {
+      "file": "images/12_pano_terrace.png",
+      "role": "Wide panoramic support image",
+      "note": "Best panoramic overview. Good for wide break sections or an immersive strip."
+    },
+    {
+      "file": "images/13_garden_left_entrance.png",
+      "role": "Supporting garden image",
+      "note": "Nice entrance-side composition. Good for masonry gallery."
+    },
+    {
+      "file": "images/14_garden_center_canopy.png",
+      "role": "Supporting garden image",
+      "note": "Good center-canopy composition for the garden section."
+    },
+    {
+      "file": "images/15_logo_blue_background.png",
+      "role": "Brand asset",
+      "note": "Use as source for brand/logo treatment and palette reference."
+    }
+  ]
+}

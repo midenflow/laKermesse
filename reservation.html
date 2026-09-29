@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Réserver une table | La Kermesse Rennes</title>
+  <meta name="description" content="Réservez votre table à La Kermesse, bar-restaurant avec jardin à Rennes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">
+</head>
+<body class="reservation-page">
+  <a class="skip-link" href="#booking">Aller à la réservation</a>
+  <header class="reservation-header"><a class="brand" href="index.html" aria-label="La Kermesse — retour à l'accueil"><img src="assets/images/15_logo_blue_background.png" alt="La Kermesse"></a><a class="back-link" href="index.html">← Retour au site</a></header>
+  <main id="booking" class="booking">
+    <section class="booking__intro"><p class="eyebrow">Réservation</p><h1>Réserver<br>votre table.</h1><p>Vous êtes à quelques clics de votre parenthèse à La Kermesse.</p><ol class="booking-steps" aria-label="Étapes de réservation"><li class="is-active"><span>1</span>Votre moment</li><li><span>2</span>Vos coordonnées</li><li><span>3</span>Confirmation DISH</li></ol></section>
+    <section class="booking__panel" aria-label="Module de réservation DISH">
+      <div class="booking__context"><div><p class="eyebrow">La Kermesse · Rennes</p><h2>Choisissez votre moment</h2></div><p>La réservation se finalise en toute sécurité auprès de notre partenaire DISH.</p></div>
+      <div class="booking__choices" aria-label="Informations préalables à la réservation"><div><span>Pour combien ?</span><strong>Le nombre de convives se choisit dans DISH</strong></div><div><span>Quand ?</span><strong>La date et l’horaire se choisissent dans DISH</strong></div></div>
+      <div class="dish-embed" data-dish-embed>
+        <div class="dish-loader" aria-live="polite"><span></span>Chargement de la réservation…</div>
+        <iframe title="Réserver une table à La Kermesse avec DISH" src="https://reservation.dish.co/shortlink/336941" loading="eager" data-dish-frame></iframe>
+      </div>
+      <div class="dish-fallback" data-dish-fallback>
+        <p><strong>Le module ne s’affiche pas ?</strong> Continuez directement sur la plateforme officielle, dans un nouvel onglet.</p>
+        <a class="button" href="https://reservation.dish.co/shortlink/336941" target="_blank" rel="noopener">Continuer la réservation <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="booking__phone">Vous préférez nous appeler ? <a href="tel:+33982684417">Réserver par téléphone — 09 82 68 44 17</a></p>
+    </section>
+  </main>
+  <footer class="site-footer site-footer--minimal"><p>©2027 La-Kermesse-Rennes - All rights reserved. &nbsp; By : <a href="https://midenflow.com" target="_blank" rel="noopener">midenflow.com</a></p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
