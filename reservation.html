@@ -6,7 +6,7 @@
   <title>Réserver une table | La Kermesse Rennes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="v2.css"><link rel="stylesheet" href="booking.css"><link rel="stylesheet" href="booking-v31.css">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="v2.css"><link rel="stylesheet" href="booking.css"><link rel="stylesheet" href="booking-v31.css"><link rel="stylesheet" href="booking-v32.css">
 </head>
 <body class="booking-page">
   <a class="skip-link" href="#booking-panel">Aller à la réservation</a>
@@ -20,9 +20,13 @@
       <form id="booking-form" novalidate>
         <section class="booking-step" data-step="1" aria-labelledby="table-step-title">
           <h2 id="table-step-title">Votre table</h2>
-          <div class="booking-fields booking-fields--selection"><label>Date<input id="booking-date" name="date" type="date" required></label><label>Convives<select id="booking-party" name="partySize" required aria-describedby="party-help"></select><span id="party-help" class="field-help">Choisissez le nombre de personnes.</span></label></div>
-          <div class="times-wrap"><div class="times-head"><span>Horaires disponibles</span><span id="availability-status" aria-live="polite"></span></div><div id="time-slots" class="time-slots" role="radiogroup" aria-label="Horaires disponibles"><p class="field-help">Choisissez une date et le nombre de convives pour voir les disponibilités.</p></div></div>
-          <button class="button booking-button" type="button" data-next-step disabled>Trouver une table <span aria-hidden="true">→</span></button>
+          <div class="booking-picker" aria-label="Choisissez la date, l’horaire et le nombre de convives">
+            <label class="booking-picker__cell"><span class="booking-picker__label">Date</span><input id="booking-date" name="date" type="date" required></label>
+            <label class="booking-picker__cell"><span class="booking-picker__label">Horaire</span><select id="booking-time" name="time" required disabled aria-describedby="availability-status"><option value="">Choisir</option></select></label>
+            <label class="booking-picker__cell"><span class="booking-picker__label">Convives</span><select id="booking-party" name="partySize" required></select></label>
+          </div>
+          <p id="availability-status" class="booking-picker__status" aria-live="polite">Choisissez une date et le nombre de convives pour voir les disponibilités.</p>
+          <button class="button booking-button" type="button" data-next-step disabled>Continuer <span aria-hidden="true">→</span></button>
         </section>
         <section class="booking-step" data-step="2" hidden aria-labelledby="guest-step-title">
           <button class="step-back" type="button" data-back-step>← Modifier votre moment</button><h2 id="guest-step-title">Vos coordonnées</h2>
