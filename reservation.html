@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Demandez votre table à La Kermesse, Rennes.">
+  <title>Réserver une table | La Kermesse Rennes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="booking.css">
+</head>
+<body class="booking-page">
+  <a class="skip-link" href="#booking-panel">Aller à la réservation</a>
+  <main class="booking-shell">
+    <a class="booking-back" href="index.html">← Retour à La Kermesse</a>
+    <section id="booking-panel" class="booking-panel" aria-labelledby="booking-title">
+      <div class="booking-panel__top"><img class="booking-logo" src="assets/images/la-kermesse-wordmark-transparent.png" alt="La Kermesse"><p class="eyebrow">121 rue de Vern · Rennes</p><h1 id="booking-title">On vous garde une table ?</h1><p class="booking-lead">Choisissez votre moment à La Kermesse.</p></div>
+      <p class="demo-notice" data-demo-notice hidden>Prototype de réservation — les réglages d’exploitation sont à confirmer avec l’équipe.</p>
+      <ol class="booking-progress" aria-label="Progression de réservation"><li class="is-current" data-progress="1"><span>1</span>Votre table</li><li data-progress="2"><span>2</span>Vos coordonnées</li><li data-progress="3"><span>3</span>Votre demande</li></ol>
+      <div class="booking-error" data-booking-error role="alert" hidden></div>
+      <form id="booking-form" novalidate>
+        <section class="booking-step" data-step="1" aria-labelledby="table-step-title">
+          <h2 id="table-step-title">Votre table</h2>
+          <div class="booking-picker" aria-label="Choisissez la date, l’horaire et le nombre de convives">
+            <label class="booking-picker__cell"><span class="booking-picker__label">Date</span><input id="booking-date" name="date" type="date" required></label>
+            <label class="booking-picker__cell"><span class="booking-picker__label">Horaire</span><select id="booking-time" name="time" required disabled aria-describedby="availability-status"><option value="">Choisir</option></select></label>
+            <label class="booking-picker__cell"><span class="booking-picker__label">Convives</span><select id="booking-party" name="partySize" required></select></label>
+          </div>
+          <p id="availability-status" class="booking-picker__status" aria-live="polite">Choisissez une date et le nombre de convives pour voir les disponibilités.</p>
+          <button class="button booking-button" type="button" data-next-step disabled>Continuer <span aria-hidden="true">→</span></button>
+        </section>
+        <section class="booking-step" data-step="2" hidden aria-labelledby="guest-step-title">
+          <button class="step-back" type="button" data-back-step>← Modifier votre moment</button><h2 id="guest-step-title">Vos coordonnées</h2>
+          <div class="booking-fields"><label>Prénom<input name="firstName" autocomplete="given-name" required maxlength="80"></label><label>Nom<input name="lastName" autocomplete="family-name" required maxlength="80"></label><label>E-mail<input name="email" type="email" autocomplete="email" required maxlength="160"></label><label>Téléphone<input name="phone" type="tel" autocomplete="tel" required maxlength="30"></label><label class="field--wide">Une demande particulière <textarea name="message" rows="3" maxlength="1000"></textarea></label></div>
+          <div class="booking-summary" data-booking-summary></div><input class="honeypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="privacy-copy">Vos coordonnées servent uniquement à gérer votre réservation. Les mentions de confidentialité seront complétées avec l’équipe avant mise en ligne.</p><button class="button booking-button" type="submit" data-submit-booking>Envoyer ma demande <span aria-hidden="true">→</span></button><p class="booking-phone">Besoin d’aide ? <a href="tel:+33982684417">09 82 68 44 17</a></p>
+        </section>
+      </form>
+      <section class="booking-result" data-step="3" hidden aria-live="polite"><p class="eyebrow">Votre demande est enregistrée</p><h2 data-result-title>Merci.</h2><p data-result-copy></p><div class="booking-reference"><span>Référence</span><strong data-result-reference></strong></div><p class="booking-phone">Une question ? <a href="tel:+33982684417">09 82 68 44 17</a></p><a class="button booking-button" href="index.html">Retour au site</a></section>
+    </section>
+  </main>
+  <script src="booking.js"></script>
+</body>
+</html>
