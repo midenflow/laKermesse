@@ -2,31 +2,38 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Demandez votre table à La Kermesse, Rennes.">
   <title>Réserver une table | La Kermesse Rennes</title>
-  <meta name="description" content="Réservez votre table à La Kermesse, bar-restaurant avec jardin à Rennes.">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="v2.css"><link rel="stylesheet" href="booking.css">
 </head>
-<body class="reservation-page">
-  <a class="skip-link" href="#booking">Aller à la réservation</a>
-  <header class="reservation-header"><a class="brand" href="index.html" aria-label="La Kermesse — retour à l'accueil"><img src="assets/images/15_logo_blue_background.png" alt="La Kermesse"></a><a class="back-link" href="index.html">← Retour au site</a></header>
-  <main id="booking" class="booking">
-    <section class="booking__intro"><p class="eyebrow">Réservation</p><h1>Réserver<br>votre table.</h1><p>Vous êtes à quelques clics de votre parenthèse à La Kermesse.</p><ol class="booking-steps" aria-label="Étapes de réservation"><li class="is-active"><span>1</span>Votre moment</li><li><span>2</span>Vos coordonnées</li><li><span>3</span>Confirmation DISH</li></ol></section>
-    <section class="booking__panel" aria-label="Module de réservation DISH">
-      <div class="booking__context"><div><p class="eyebrow">La Kermesse · Rennes</p><h2>Choisissez votre moment</h2></div><p>La réservation se finalise en toute sécurité auprès de notre partenaire DISH.</p></div>
-      <div class="booking__choices" aria-label="Informations préalables à la réservation"><div><span>Pour combien ?</span><strong>Le nombre de convives se choisit dans DISH</strong></div><div><span>Quand ?</span><strong>La date et l’horaire se choisissent dans DISH</strong></div></div>
-      <div class="dish-embed" data-dish-embed>
-        <div class="dish-loader" aria-live="polite"><span></span>Chargement de la réservation…</div>
-        <iframe title="Réserver une table à La Kermesse avec DISH" src="https://reservation.dish.co/shortlink/336941" loading="eager" data-dish-frame></iframe>
-      </div>
-      <div class="dish-fallback" data-dish-fallback>
-        <p><strong>Le module ne s’affiche pas ?</strong> Continuez directement sur la plateforme officielle, dans un nouvel onglet.</p>
-        <a class="button" href="https://reservation.dish.co/shortlink/336941" target="_blank" rel="noopener">Continuer la réservation <span aria-hidden="true">↗</span></a>
-      </div>
-      <p class="booking__phone">Vous préférez nous appeler ? <a href="tel:+33982684417">Réserver par téléphone — 09 82 68 44 17</a></p>
+<body class="booking-page">
+  <a class="skip-link" href="#booking-panel">Aller à la réservation</a>
+  <main class="booking-shell">
+    <a class="booking-back" href="index.html">← Retour à La Kermesse</a>
+    <section id="booking-panel" class="booking-panel" aria-labelledby="booking-title">
+      <div class="booking-panel__top"><img class="booking-logo" src="assets/images/OFFICIAL_LOGO_SOURCE.png" alt="La Kermesse"><p class="eyebrow">121 rue de Vern · Rennes</p><h1 id="booking-title">On vous garde<br>une table ?</h1><p class="booking-lead">Choisissez votre moment à La Kermesse.</p></div>
+      <p class="demo-notice" data-demo-notice hidden>Prototype de réservation — les réglages d’exploitation sont à confirmer avec l’équipe.</p>
+      <ol class="booking-progress" aria-label="Progression de réservation"><li class="is-current" data-progress="1"><span>1</span>Votre table</li><li data-progress="2"><span>2</span>Vos coordonnées</li><li data-progress="3"><span>3</span>Votre demande</li></ol>
+      <div class="booking-error" data-booking-error role="alert" hidden></div>
+      <form id="booking-form" novalidate>
+        <section class="booking-step" data-step="1" aria-labelledby="table-step-title">
+          <h2 id="table-step-title">Votre table</h2>
+          <div class="booking-fields booking-fields--selection"><label>Date<input id="booking-date" name="date" type="date" required></label><label>Convives<select id="booking-party" name="partySize" required aria-describedby="party-help"></select><span id="party-help" class="field-help">Choisissez le nombre de personnes.</span></label></div>
+          <div class="times-wrap"><div class="times-head"><span>Horaires disponibles</span><span id="availability-status" aria-live="polite"></span></div><div id="time-slots" class="time-slots" role="radiogroup" aria-label="Horaires disponibles"><p class="field-help">Choisissez une date et le nombre de convives pour voir les disponibilités.</p></div></div>
+          <button class="button booking-button" type="button" data-next-step disabled>Trouver une table <span aria-hidden="true">→</span></button>
+        </section>
+        <section class="booking-step" data-step="2" hidden aria-labelledby="guest-step-title">
+          <button class="step-back" type="button" data-back-step>← Modifier votre moment</button><h2 id="guest-step-title">Vos coordonnées</h2>
+          <div class="booking-fields"><label>Prénom<input name="firstName" autocomplete="given-name" required maxlength="80"></label><label>Nom<input name="lastName" autocomplete="family-name" required maxlength="80"></label><label>E-mail<input name="email" type="email" autocomplete="email" required maxlength="160"></label><label>Téléphone<input name="phone" type="tel" autocomplete="tel" required maxlength="30"></label><label class="field--wide">Une demande particulière <textarea name="message" rows="3" maxlength="1000"></textarea></label></div>
+          <div class="booking-summary" data-booking-summary></div><input class="honeypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="privacy-copy">Vos coordonnées servent uniquement à gérer votre réservation. Les mentions de confidentialité seront complétées avec l’équipe avant mise en ligne.</p><button class="button booking-button" type="submit" data-submit-booking>Envoyer ma demande <span aria-hidden="true">→</span></button><p class="booking-phone">Besoin d’aide ? <a href="tel:+33982684417">09 82 68 44 17</a></p>
+        </section>
+      </form>
+      <section class="booking-result" data-step="3" hidden aria-live="polite"><p class="eyebrow">Votre demande est enregistrée</p><h2 data-result-title>Merci.</h2><p data-result-copy></p><div class="booking-reference"><span>Référence</span><strong data-result-reference></strong></div><p class="booking-phone">Une question ? <a href="tel:+33982684417">09 82 68 44 17</a></p><a class="button booking-button" href="index.html">Retour au site</a></section>
     </section>
   </main>
-  <footer class="site-footer site-footer--minimal"><p>©2027 La-Kermesse-Rennes - All rights reserved. &nbsp; By : <a href="https://midenflow.com" target="_blank" rel="noopener">midenflow.com</a></p></footer>
-  <script src="script.js"></script>
+  <script src="booking.js"></script>
 </body>
 </html>

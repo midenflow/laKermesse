@@ -1,0 +1,1 @@
+{"name":"la-kermesse-reservations","private":true,"version":"3.0.0","scripts":{"start":"node server/app.js","setup-admin":"node server/setup-admin.js"},"engines":{"node":">=24"}}
