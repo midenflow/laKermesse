@@ -26,8 +26,8 @@ $(function(){
     slots.forEach(slot=>$time.append(new Option(slot,slot)));$time.prop('disabled',false);$status.text(`${slots.length} horaire(s) proposé(s) selon les heures de cuisine.`);
   };
   const initialDate=()=>{let date=new Date();for(let offset=0;offset<8;offset++){const candidate=new Date(date);candidate.setDate(date.getDate()+offset);if((config.serviceWindows[candidate.getDay()]||[]).length)return candidate.toISOString().slice(0,10)}return today()};
-  $date.attr('min',today()).val(initialDate());for(let count=1;count<=config.maxPartySize;count++)$party.append(new Option(`${count} ${count===1?'personne':'personnes'}`,count,count===2,count===2));
-  $date.on('change',refreshTimes);$party.on('change',refreshTimes);$time.on('change',function(){selectedTime=$(this).val();$next.prop('disabled',!selectedTime)});
+  $date.attr('min',today()).val(initialDate());for(let count=1;count<=14;count++)$party.append(new Option(`${count} ${count===1?'personne':'personnes'}`,count,count===2,count===2));$party.append(new Option('15 personnes ou +','15+'));
+  $date.on('change',refreshTimes);$party.on('change',function(){if($(this).val()==='15+'){$('[data-open-privatisation]').trigger('click');return}refreshTimes()});$time.on('change',function(){selectedTime=$(this).val();$next.prop('disabled',!selectedTime)});
   $next.on('click',()=>{if(!selectedTime)return;$('[data-booking-summary]').html(`<div><span>Date</span>${frenchDate($date.val())}</div><div><span>Heure</span>${selectedTime}</div><div><span>Convives</span>${$party.val()}</div>`);setStep(2)});
   $('[data-back-step]').on('click',()=>setStep(1));
   const configured=()=>!Object.values(config.email).some(value=>!value||value.includes('VOTRE_')||value.includes('REMPLACEZ_'));
@@ -39,4 +39,22 @@ $(function(){
     try{window.emailjs.init({publicKey:config.email.publicKey});await Promise.all([sendMail(config.email.ownerTemplateId,emailData(guest,config.email.ownerEmail)),sendMail(config.email.requesterTemplateId,emailData(guest,guest.email))]);$('[data-result-reference]').text(`Demande envoyée — ${$date.val()} · ${selectedTime}`);$('[data-result-title]').text('Votre demande est envoyée.');$('[data-result-copy]').text('Une confirmation a été envoyée au restaurant et à votre adresse e-mail.');setStep(3)}catch(error){$submit.prop('disabled',false).html('Envoyer ma demande <span aria-hidden="true">→</span>');showError(error.message||'L’e-mail n’a pas pu être envoyé. Réessayez après avoir vérifié les réglages EmailJS.')}
   });
   refreshTimes();
+});
+
+$(function(){
+  const config=window.LK_BOOKING_CONFIG,$standard=$('#booking-form'),$view=$('[data-privatisation]'),$result=$('[data-privatisation-result]'),$form=$('#privatisation-form'),$error=$('[data-privatisation-error]'),$date=$form.find('[name="eventDate"]'),$count=$form.find('[name="guestCount"]');
+  const today=new Date().toISOString().slice(0,10),friendly=value=>new Date(`${value}T12:00:00`).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
+  const message=(text,retry)=>{$error.empty().prop('hidden',!text);if(!text)return;$error.append(document.createTextNode(text));if(retry)$('<button>',{type:'button','class':'inline-retry',text:'Réessayer'}).on('click',retry).appendTo($error)};
+  const configured=()=>!Object.values(config.email).some(value=>!value||value.includes('VOTRE_')||value.includes('REMPLACEZ_'));
+  const open=()=>{$standard.prop('hidden',true);$view.prop('hidden',false);$result.prop('hidden',true);history.replaceState(null,'','reservation.html?mode=privatisation');$view.find('h2').attr('tabindex','-1').trigger('focus');};
+  const close=()=>{$view.prop('hidden',true);$result.prop('hidden',true);$standard.prop('hidden',false);history.replaceState(null,'','reservation.html');};
+  $date.attr('min',today);$('[data-open-privatisation]').on('click',open);$('[data-close-privatisation]').on('click',close);$('[data-new-privatisation]').on('click',()=>{$form[0].reset();message('');open()});
+  $count.on('input',function(){$('[data-over-thirty]').prop('hidden',Number(this.value)<=30)});
+  if(new URLSearchParams(location.search).get('mode')==='privatisation')open();
+  $form.on('submit',async function(event){
+    event.preventDefault();message('');if(!this.checkValidity()){this.reportValidity();return}if(!configured()){message('Configurez d’abord les cinq valeurs EmailJS dans assets/js/booking.js. Aucune demande n’a été envoyée.');return}if(!window.emailjs){message('Votre demande n’a pas pu être envoyée. Vérifiez votre connexion puis réessayez.',()=>this.requestSubmit());return}
+    const data=Object.fromEntries(new FormData(this)),button=$('[data-submit-privatisation]').prop('disabled',true).text('Envoi en cours…');
+    const payload={request_type:'Privatisation',to_email:config.email.ownerEmail,guest_count:data.guestCount,event_date:friendly(data.eventDate),first_name:data.firstName,last_name:data.lastName,reply_to:data.email,phone:data.phone,event_type:data.eventType,budget:data.budget||'Non précisé',organisation:data.organisation||'Non précisée',moment:data.moment,audience:data.audience,message:data.details,request_timestamp:new Date().toLocaleString('fr-FR')};
+    try{window.emailjs.init({publicKey:config.email.publicKey});await Promise.all([window.emailjs.send(config.email.serviceId,config.email.ownerTemplateId,payload),window.emailjs.send(config.email.serviceId,config.email.requesterTemplateId,{...payload,to_email:data.email})]);$view.prop('hidden',true);$result.prop('hidden',false);$('[data-privatisation-summary]').html(`<span>Date souhaitée</span><strong>${payload.event_date} · ${data.guestCount} personnes · ${data.eventType}</strong>`)}catch(error){button.prop('disabled',false).html('Envoyer ma demande <span aria-hidden="true">→</span>');message('Votre demande n’a pas pu être envoyée. Vérifiez votre connexion puis réessayez.',()=>this.requestSubmit())}
+  });
 });

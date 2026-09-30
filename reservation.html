@@ -26,6 +26,7 @@
             <label class="booking-picker__cell"><span class="booking-picker__label">Convives</span><select id="booking-party" name="partySize" required></select></label>
           </div>
           <p id="availability-status" class="booking-picker__status" aria-live="polite">Choisissez une date et le nombre de convives pour voir les disponibilités.</p>
+          <aside class="group-entry" aria-label="Demande de privatisation"><strong>Vous êtes 15 personnes ou plus ?</strong><p>Pour les réservations de <b>15 à 30 personnes</b>, merci de remplir notre formulaire de <em>privatisation</em>.</p><button type="button" class="group-entry__link" data-open-privatisation>Faire une demande de privatisation <span aria-hidden="true">→</span></button></aside>
           <button class="button booking-button" type="button" data-next-step disabled>Continuer <span aria-hidden="true">→</span></button>
         </section>
         <section class="booking-step" data-step="2" hidden aria-labelledby="guest-step-title">
@@ -35,6 +36,27 @@
           <p class="privacy-copy">Vos coordonnées servent uniquement à gérer votre réservation. Les mentions de confidentialité seront complétées avec l’équipe avant mise en ligne.</p><button class="button booking-button" type="submit" data-submit-booking>Envoyer ma demande <span aria-hidden="true">→</span></button><p class="booking-phone">Besoin d’aide ? <a href="tel:+33982684417">09 82 68 44 17</a></p>
         </section>
       </form>
+      <section class="privatisation-view" data-privatisation hidden aria-labelledby="privatisation-title">
+        <button class="step-back" type="button" data-close-privatisation>← Retour à la réservation classique</button>
+        <div class="privatisation-head"><p class="eyebrow">Privatisation · Groupes · Événements</p><h2 id="privatisation-title">Votre événement à La Kermesse.</h2><p>Anniversaire, afterwork, repas d’équipe ou moment privé : racontez-nous votre projet et l’équipe reviendra vers vous.</p></div>
+        <div class="booking-error" data-privatisation-error role="alert" aria-live="polite" hidden></div>
+        <form id="privatisation-form" novalidate>
+          <div class="privatisation-grid">
+            <label>Nombre de personnes<input name="guestCount" type="number" min="15" required inputmode="numeric"></label><label>Date souhaitée<input name="eventDate" type="date" required></label>
+            <label>E-mail<input name="email" type="email" autocomplete="email" required></label><label>Téléphone<input name="phone" type="tel" autocomplete="tel" required></label>
+            <label>Prénom<input name="firstName" autocomplete="given-name" required></label><label>Nom<input name="lastName" autocomplete="family-name" required></label>
+            <label>Type d’événement<select name="eventType" required><option value="">Choisir</option><option>Anniversaire</option><option>Afterwork</option><option>Repas d’équipe</option><option>Soirée d’entreprise</option><option>Réception familiale</option><option>Déjeuner / dîner</option><option>Événement privé</option><option>Événement professionnel</option><option>Autre</option></select></label><label>Budget estimé <span>optionnel</span><input name="budget" placeholder="Ex. 800 €"></label>
+            <label>Entreprise / organisation <span>optionnel</span><input name="organisation"></label>
+          </div>
+          <fieldset class="choice-set"><legend>Moment souhaité</legend><label><input type="radio" name="moment" value="Journée" required> Journée</label><label><input type="radio" name="moment" value="Soirée" required> Soirée</label></fieldset>
+          <fieldset class="choice-set"><legend>Votre événement</legend><label><input type="radio" name="audience" value="Privé" required> Privé</label><label><input type="radio" name="audience" value="Professionnel" required> Professionnel</label></fieldset>
+          <label class="privatisation-message">Parlez-nous de votre événement <small>Horaires souhaités, ambiance, restauration, boissons, contraintes particulières…</small><textarea name="details" rows="6" maxlength="1800" required></textarea></label>
+          <p class="over-thirty" data-over-thirty hidden><strong>Plus de 30 personnes ?</strong> Envoyez-nous votre demande et l’équipe reviendra vers vous avec une proposition adaptée.</p>
+          <label class="consent"><input type="checkbox" name="consent" required> J’accepte que mes informations soient utilisées pour traiter ma demande de privatisation.</label><p class="privacy-copy">Vos informations servent uniquement à répondre à cette demande.</p>
+          <button class="button booking-button" type="submit" data-submit-privatisation>Envoyer ma demande <span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+      <section class="booking-result privatisation-result" data-privatisation-result hidden aria-live="polite"><p class="eyebrow">Demande envoyée</p><h2>Votre demande est partie !</h2><p>L’équipe de La Kermesse reviendra vers vous pour confirmer les disponibilités et organiser votre événement.</p><div class="booking-reference" data-privatisation-summary></div><a class="button booking-button" href="index.html">Retour à La Kermesse</a><button class="step-back" type="button" data-new-privatisation>Faire une autre demande</button></section>
       <section class="booking-result" data-step="3" hidden aria-live="polite"><p class="eyebrow">Votre demande est enregistrée</p><h2 data-result-title>Merci.</h2><p data-result-copy></p><div class="booking-reference"><span>Référence</span><strong data-result-reference></strong></div><p class="booking-phone">Une question ? <a href="tel:+33982684417">09 82 68 44 17</a></p><a class="button booking-button" href="index.html">Retour au site</a></section>
     </section>
   </main>
