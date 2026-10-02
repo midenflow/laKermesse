@@ -9,6 +9,8 @@
   <meta property="og:description" content="Un bistrot de quartier, un grand jardin caché et des soirées qui se prolongent.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/images/01_hero_sunset_people.png">
+  <meta name="theme-color" content="#06171f">
+  <link rel="icon" type="image/png" href="assets/images/la-kermesse-wordmark-transparent.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -72,7 +74,7 @@
         <figure class="garden__primary image-frame reveal"><img src="assets/images/03_day_garden_framed_arch.png" alt="Le jardin arboré et les transats de La Kermesse" loading="lazy" width="1047" height="1502"></figure>
         <div class="garden__text reveal">
           <p>Palmiers, tables au soleil, transats et grands éclats de rire : le jardin est le cœur battant de La Kermesse. Une vraie respiration urbaine, à partager en famille ou entre amis.</p>
-          <a class="text-link" href="reservation.html">Choisir sa parenthèse <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="reservation.html">Réserver au jardin <span aria-hidden="true">→</span></a>
         </div>
         <figure class="garden__secondary image-frame reveal"><img src="assets/images/09_day_garden_wide.png" alt="Grande terrasse ensoleillée de La Kermesse" loading="lazy" width="1672" height="941"></figure>
         <figure class="garden__tertiary image-frame reveal"><img src="assets/images/14_garden_center_canopy.png" alt="Le jardin sous sa voile d'ombrage" loading="lazy" width="1849" height="851"></figure>
@@ -94,9 +96,9 @@
       </div>
       <div class="menu-preview wrap reveal" data-menu>
         <div class="menu-preview__heading"><p class="eyebrow">La carte</p><h3>Déjeuner &amp; pizzas</h3><p class="menu-note">Une carte claire, conçue pour évoluer avec les produits et les saisons.</p></div>
-        <section class="lunch-menu" aria-labelledby="lunch-title"><div class="menu-section__title"><p class="eyebrow">Déjeuner</p><h4 id="lunch-title">La formule du midi</h4><p>Exemple de menu — à actualiser selon la carte du moment.</p></div><div class="menu-preview__pricing" data-lunch-prices></div><div class="menu-columns" data-lunch-columns></div></section>
+        <section class="lunch-menu" aria-labelledby="lunch-title"><div class="menu-section__title"><p class="eyebrow">Déjeuner</p><h4 id="lunch-title">La formule du midi</h4><p>La carte évolue au rythme des produits et des saisons.</p></div><div class="menu-preview__pricing" data-lunch-prices></div><div class="menu-columns" data-lunch-columns></div></section>
         <section class="pizza-menu" aria-labelledby="pizza-title"><div class="pizza-menu__intro"><div><p class="eyebrow">À partager, ou pas</p><h3 id="pizza-title">Les Pizzas de<br>La Kermesse.</h3></div><div class="pizza-badges"><span>Sur place</span><span>À emporter</span><span>Jusqu’à 21h30</span></div></div><div class="pizza-list" data-pizza-list></div></section>
-        <div class="menu-preview__bottom"><p><strong>Une envie de table ? </strong>Réservez votre déjeuner, votre pizza ou votre soirée à La Kermesse.</p><a class="text-link" href="reservation.html">Réserver une table <span aria-hidden="true">↗</span></a></div>
+        <div class="menu-preview__bottom"><p><strong>On vous garde une table ? </strong>Réservez votre déjeuner, votre pizza ou votre soirée à La Kermesse.</p><a class="text-link" href="reservation.html">Réserver une table <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
 
@@ -107,7 +109,7 @@
 
     <section id="evenements" class="events" aria-labelledby="events-title">
       <div class="events__image"><img src="assets/images/04_dj_booth_event.png" alt="DJ installé dans le jardin de La Kermesse" loading="lazy" width="1087" height="1447"></div>
-      <div class="events__content reveal"><p class="eyebrow">Quand le jardin s’anime</p><h2 id="events-title">Plus qu’un verre,<br>un rendez-vous.</h2><p>DJ sets, concerts, blind tests, stand-up, impro et soirées sport : La programmation évolue au fil des semaines.</p><a class="button button--cream" href="https://www.instagram.com/la_kermesse_rennes/?hl=fr" target="_blank" rel="noopener">Suivre les prochains rendez-vous <span aria-hidden="true">↗</span></a><a class="text-link text-link--light events__private-link" href="reservation.html?mode=privatisation">Organiser un événement <span aria-hidden="true">→</span></a></div>
+      <div class="events__content reveal"><p class="eyebrow">Quand le jardin s’anime</p><h2 id="events-title">Plus qu’un verre,<br>un rendez-vous.</h2><p>DJ sets, concerts, blind tests, stand-up, impro et soirées sport : La programmation évolue au fil des semaines.</p><div class="events__actions"><a class="button button--cream" href="https://www.instagram.com/la_kermesse_rennes/?hl=fr" target="_blank" rel="noopener">Suivre les prochains rendez-vous <span aria-hidden="true">↗</span></a><a class="button events__private-button" href="reservation.html?mode=privatisation">Organiser un événement <span aria-hidden="true">→</span></a></div></div>
     </section>
 
     <section class="pano" aria-label="Vue panoramique du jardin"><img src="assets/images/12_pano_terrace.png" alt="Vue panoramique de la terrasse de La Kermesse" loading="lazy" width="2160" height="728"></section>
@@ -126,13 +128,13 @@
     <section class="reserve-band section" aria-labelledby="reserve-title"><div class="wrap reserve-band__inner reveal"><p class="eyebrow">On vous garde une place ?</p><h2 id="reserve-title">Une table au jardin ?</h2><p>Réservez votre moment à La Kermesse.</p><div><a class="button button--cream" href="reservation.html">Réserver une table <span aria-hidden="true">↗</span></a><a class="text-link text-link--light" href="tel:+33982684417">09 82 68 44 17</a></div></div></section>
 
     <section id="infos" class="info section wrap" aria-labelledby="info-title">
-      <div class="info__intro reveal"><p class="eyebrow">Venir à La Kermesse</p><h2 id="info-title">À deux pas,<br>mais loin d’ailleurs.</h2></div>
-      <div class="info__details reveal"><div><h3>Nous trouver</h3><address>121 Rue de Vern<br>35200 Rennes</address><a class="text-link" href="https://www.google.com/maps/search/?api=1&query=121+Rue+de+Vern,+35200+Rennes,+France" target="_blank" rel="noopener">Ouvrir dans Google Maps <span aria-hidden="true">↗</span></a></div><div><h3>Nous appeler</h3><a class="info-link" href="tel:+33982684417">09 82 68 44 17</a><a class="info-link" href="https://www.instagram.com/la_kermesse_rennes/?hl=fr" target="_blank" rel="noopener">@la_kermesse_rennes <span aria-hidden="true">↗</span></a></div><div class="hours"><h3>Horaires</h3><!-- Replace after client confirms current opening hours --><p>Horaires — à confirmer</p></div></div>
+      <div class="info__intro reveal"><p class="eyebrow">Venir à La Kermesse</p><h2 id="info-title">On se retrouve<br>rue de Vern.</h2></div>
+      <div class="info__details reveal"><div><h3>Nous trouver</h3><address>121 Rue de Vern<br>35200 Rennes</address><a class="text-link" href="https://www.google.com/maps/search/?api=1&query=121+Rue+de+Vern,+35200+Rennes,+France" target="_blank" rel="noopener">Ouvrir dans Google Maps <span aria-hidden="true">↗</span></a></div><div><h3>Nous contacter</h3><a class="info-link info-link--icon" href="tel:+33982684417"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.1 2.8 4.8 5.1c-.8.8-.8 2.2-.1 3.1 3.2 4.5 6.9 8.2 11.4 11.4.9.7 2.3.7 3.1-.1l2.3-2.3-3.4-3.4-2.2 1.6c-1.8-1.1-3.3-2.6-4.4-4.4l1.6-2.2-3.5-4z"/></svg><span>09 82 68 44 17</span></a><a class="info-link info-link--icon" href="https://www.instagram.com/la_kermesse_rennes/?hl=fr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1"/></svg><span>@la_kermesse_rennes <span aria-hidden="true">↗</span></span></a></div><div class="hours"><h3>Horaires restaurant</h3><p>Lun–mer · 09h–00h<br>Jeu–ven · 09h–01h<br>Sam · 17h–01h<br>Dim · Fermé</p><h3>Service cuisine</h3><p>Lun–mer · 12h–13h30 &amp; 18h30–21h30<br>Jeu–ven · 12h–13h30 &amp; 18h30–22h30<br>Sam · 18h30–22h30<br>Dim · Fermé</p></div></div>
     </section>
     <section class="map-section wrap reveal" aria-labelledby="map-title"><div class="map-section__head"><p class="eyebrow">Le point de départ</p><h2 id="map-title">121, rue de Vern.</h2></div><div class="map-frame"><iframe title="Carte interactive : La Kermesse, 121 Rue de Vern, Rennes" src="https://www.google.com/maps?q=121+Rue+de+Vern,+35200+Rennes,+France&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></section>
   </main>
   <footer class="site-footer"><div class="wrap"><a class="brand brand--footer" href="#top" aria-label="La Kermesse — haut de page"><img src="assets/images/la-kermesse-wordmark-transparent.png" alt="La Kermesse"></a><p>©2027 La-Kermesse-Rennes - All rights reserved. &nbsp; By : <a href="https://midenflow.com" target="_blank" rel="noopener">midenflow.com</a></p></div></footer>
-  <script src="assets/js/menu-data.js"></script>
+  <script src="assets/data/menu-data.js"></script>
   <script src="assets/js/site.js"></script>
 </body>
 </html>

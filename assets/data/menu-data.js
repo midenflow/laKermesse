@@ -1,6 +1,6 @@
 /*
-  Menu content lives here so it can be updated without changing the page layout.
-  Replace only the text below when the kitchen updates the menu.
+  EDIT THIS FILE to update lunch dishes, pizza names, ingredients and prices.
+  It contains content only; assets/js/site.js renders this data on the homepage.
 */
 window.laKermesseMenu = {
   lunch: {

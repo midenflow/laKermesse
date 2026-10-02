@@ -59,16 +59,4 @@
     });
   }
 
-  const hours = document.querySelector('.hours');
-  if (hours && !document.body.classList.contains('reservation-page')) {
-    hours.innerHTML = '<h3>Horaires restaurant</h3><p>Lun–mer · 09h–00h<br>Jeu–ven · 09h–01h<br>Sam · 17h–01h<br>Dim · Fermé</p><h3>Service cuisine</h3><p>Lun–mer · 12h–13h30 &amp; 18h30–21h30<br>Jeu–ven · 12h–13h30 &amp; 18h30–22h30<br>Sam · 18h30–22h30<br>Dim · Fermé</p>';
-  }
-
-  const dishFrame = document.querySelector('[data-dish-frame]');
-  const loader = document.querySelector('.dish-loader');
-  if (dishFrame) {
-    const loaded = () => loader?.classList.add('is-hidden');
-    dishFrame.addEventListener('load', loaded, { once: true });
-    window.setTimeout(() => loader?.classList.add('is-hidden'), 6500);
-  }
 })();
