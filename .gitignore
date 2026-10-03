@@ -3,3 +3,13 @@ data/*.db
 data/*.db-shm
 data/*.db-wal
 node_modules
+
+# Keep main limited to the canonical website and its required assets.
+/LA_KERMESSE_*.md
+/La_Kermesse_V*.md
+/image_manifest.json
+/Images/
+/LOGO.png
+/*.zip
+/screenshot*.png
+/codex-clipboard-*.png
