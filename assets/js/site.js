@@ -30,6 +30,31 @@
   const priceTarget = document.querySelector('[data-lunch-prices]');
   const lunchTarget = document.querySelector('[data-lunch-columns]');
   const pizzaTarget = document.querySelector('[data-pizza-list]');
+  const createPriceBadge = price => {
+    const badge = document.createElement('span');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const priceText = document.createElement('span');
+    const addPath = (className, d) => {
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('class', className);
+      path.setAttribute('d', d);
+      svg.append(path);
+    };
+    badge.className = 'pizza-card__price-badge';
+    badge.setAttribute('aria-label', `Prix : ${price}`);
+    svg.classList.add('pizza-card__price-mark');
+    svg.setAttribute('viewBox', '0 0 100 112');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    addPath('pizza-card__ribbon', 'M30 75 27 104 43 94 53 107 58 77');
+    addPath('pizza-card__ribbon', 'M70 75 73 104 57 94 47 107 42 77');
+    addPath('pizza-card__seal', 'M50 7 C63 5 70 11 79 17 C87 25 94 36 92 49 C95 62 88 72 80 80 C70 88 62 93 50 91 C38 93 29 88 20 80 C12 72 5 62 8 49 C6 36 13 25 21 17 C30 11 37 5 50 7 Z');
+    addPath('pizza-card__seal-line', 'M50 14 C61 12 68 17 75 22 C83 29 87 38 85 49 C88 59 82 68 75 75 C67 82 59 85 50 84 C41 85 33 82 25 75 C18 68 12 59 15 49 C13 38 17 29 25 22 C32 17 39 12 50 14 Z');
+    priceText.className = 'pizza-card__price-text';
+    priceText.textContent = price;
+    badge.append(svg, priceText);
+    return badge;
+  };
   if (menuData && priceTarget && lunchTarget && pizzaTarget) {
     menuData.lunch.prices.forEach(({ price, label }) => {
       const item = document.createElement('p');
@@ -50,15 +75,15 @@
     menuData.pizzas.forEach(({ name, price, ingredients, image }) => {
       const item = document.createElement('article');
       const title = document.createElement('h4');
-      const amount = document.createElement('span');
       const detail = document.createElement('p');
       const disc = document.createElement('div');
       const pizzaImage = document.createElement('img');
       const copy = document.createElement('div');
-      item.className = 'pizza-card'; disc.className = 'pizza-card__disc'; pizzaImage.className = 'pizza-card__image'; copy.className = 'pizza-card__copy'; title.className = 'pizza-card__name'; amount.className = 'pizza-card__price'; detail.className = 'pizza-card__ingredients';
+      const priceBadge = createPriceBadge(price);
+      item.className = 'pizza-card'; disc.className = 'pizza-card__disc'; pizzaImage.className = 'pizza-card__image'; copy.className = 'pizza-card__copy'; title.className = 'pizza-card__name'; detail.className = 'pizza-card__ingredients';
       pizzaImage.src = image; pizzaImage.alt = `Pizza ${name}`; pizzaImage.loading = 'lazy';
-      title.textContent = name; amount.textContent = price; detail.textContent = ingredients;
-      disc.append(pizzaImage); copy.append(title, detail, amount); item.append(disc, copy);
+      title.textContent = name; detail.textContent = ingredients;
+      disc.append(pizzaImage, priceBadge); copy.append(title, detail); item.append(disc, copy);
       pizzaTarget.append(item);
     });
   }
@@ -70,14 +95,15 @@
 
   if (pizzaShowcase && pizzaViewport && pizzaTrack && reducedMotion) {
     const palette = [
-      { background: '#0d3442', foreground: '#f4efe4' },
-      { background: '#329fc0', foreground: '#06171f' },
-      { background: '#e7776f', foreground: '#06171f' },
-      { background: '#d6aa3c', foreground: '#06171f' },
-      { background: '#e97aac', foreground: '#06171f' },
-      { background: '#66b98d', foreground: '#06171f' },
-      { background: '#ee9a72', foreground: '#06171f' },
-      { background: '#0d3442', foreground: '#f4efe4' }
+      { position: 0, background: '#000000', foreground: '#f4efe4' },
+      { position: .08, background: '#0d3442', foreground: '#f4efe4' },
+      { position: .22, background: '#329fc0', foreground: '#06171f' },
+      { position: .35, background: '#e7776f', foreground: '#06171f' },
+      { position: .48, background: '#d6aa3c', foreground: '#06171f' },
+      { position: .61, background: '#e97aac', foreground: '#06171f' },
+      { position: .74, background: '#66b98d', foreground: '#06171f' },
+      { position: .90, background: '#ee9a72', foreground: '#06171f' },
+      { position: 1, background: '#000000', foreground: '#f4efe4' }
     ];
     let geometry = { overflow: 0, startOffset: 0 };
     let framePending = false;
@@ -91,11 +117,11 @@
       return `rgb(${start.map((value, index) => Math.round(value + (end[index] - value) * amount)).join(', ')})`;
     };
     const setPalette = progress => {
-      const position = progress * (palette.length - 1);
-      const index = Math.min(palette.length - 2, Math.floor(position));
-      const amount = position - index;
+      const nextIndex = Math.min(palette.length - 1, palette.findIndex(stop => stop.position >= progress));
+      const index = Math.max(0, nextIndex - 1);
       const current = palette[index];
-      const next = palette[index + 1];
+      const next = palette[nextIndex];
+      const amount = current === next ? 0 : (progress - current.position) / (next.position - current.position);
       pizzaShowcase.style.setProperty('--pizza-background', mixColor(current.background, next.background, amount));
       pizzaShowcase.style.setProperty('--pizza-foreground', mixColor(current.foreground, next.foreground, amount));
     };
@@ -103,7 +129,7 @@
       framePending = false;
       if (!geometry.overflow) return;
       const progress = clamp((geometry.startOffset - pizzaShowcase.getBoundingClientRect().top) / geometry.overflow);
-      const translate = -geometry.overflow + geometry.overflow * progress;
+      const translate = -geometry.overflow * progress;
       pizzaTrack.style.transform = `translate3d(${translate}px, 0, 0)`;
       pizzaTrack.querySelectorAll('.pizza-card__image').forEach((image, index) => {
         const direction = index % 2 === 0 ? 1 : -1;
