@@ -102,18 +102,20 @@
         <div class="pizza-showcase__sticky">
           <div class="pizza-showcase__header wrap">
             <h3 id="pizza-title">Les Pizzas de La Kermesse.</h3>
-            <div class="pizza-paper-labels" aria-label="Disponibilité des pizzas">
-              <img src="assets/images/pizza-info/Sur place.png" alt="Sur place">
-              <img src="assets/images/pizza-info/A emporter.png" alt="À emporter">
-              <img src="assets/images/pizza-info/Jusqu'à 21h30.png" alt="Jusqu’à 21h30">
-            </div>
           </div>
           <div class="pizza-showcase__viewport" data-pizza-viewport>
             <div class="pizza-showcase__track" data-pizza-list></div>
           </div>
         </div>
       </section>
-      <div class="menu-preview__bottom wrap reveal"><p><strong>On vous garde une table ? </strong>Réservez votre déjeuner, votre pizza ou votre soirée à La Kermesse.</p><a class="text-link" href="reservation.html">Réserver une table <span aria-hidden="true">↗</span></a></div>
+      <section class="pizza-info-band" aria-label="Disponibilité des pizzas">
+        <div class="pizza-info-band__papers">
+          <img class="pizza-info-band__paper pizza-info-band__paper--takeaway" src="assets/images/pizza-info/A emporter.png" alt="À emporter">
+          <img class="pizza-info-band__paper pizza-info-band__paper--dine-in" src="assets/images/pizza-info/Sur place.png" alt="Sur place">
+          <img class="pizza-info-band__paper pizza-info-band__paper--hours" src="assets/images/pizza-info/Jusqu'à 21h30.png" alt="Jusqu’à 21h30">
+        </div>
+        <div class="pizza-info-band__checker" aria-hidden="true"></div>
+      </section>
     </section>
 
     <section class="living section wrap" aria-labelledby="living-title">
